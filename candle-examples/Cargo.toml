@@ -33,6 +33,7 @@ serde_json = { workspace = true }
 symphonia = { version = "0.5.3", features = ["all"] }
 tokenizers = { workspace = true, features = ["onig"] }
 cpal= { version = "0.15.2", optional = true }
+ureq = { version = "2.9.6", features = ["proxy-from-env"]}
 
 [dev-dependencies]
 anyhow = { workspace = true }
