@@ -438,7 +438,7 @@ fn main() -> anyhow::Result<()> {
             Prompt::One(prompt) => prompt.clone(),
             Prompt::Interactive | Prompt::Chat => {
                 let is_interactive = matches!(prompt, Prompt::Interactive);
-                print!("> ");
+                print!("User: ");
                 std::io::stdout().flush()?;
                 let mut prompt = String::new();
                 std::io::stdin().read_line(&mut prompt)?;
@@ -463,7 +463,7 @@ fn main() -> anyhow::Result<()> {
                 }
             }
         };
-        print!("{}", &prompt_str);
+        // print!("{}", &prompt_str);
         let tokens = tos
             .tokenizer()
             .encode(prompt_str, true)
@@ -495,6 +495,7 @@ fn main() -> anyhow::Result<()> {
         };
         let prompt_dt = start_prompt_processing.elapsed();
         all_tokens.push(next_token);
+        print!("AI: ");
         if let Some(t) = tos.next_token(next_token)? {
             print!("{t}");
             std::io::stdout().flush()?;
